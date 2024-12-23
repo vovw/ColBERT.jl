@@ -145,3 +145,13 @@ function index(indexer::Indexer)
     # check if all relevant files are saved
     _check_all_files_are_saved(indexer.config.index_path)
 end
+
+function Base.show(io::IO, indexer::Indexer)
+    print(io, "ColBERT Indexer:\n")
+    print(io, "  Collection size: $(length(indexer.collection)) documents\n")
+    print(io, "  Model: $(indexer.config.checkpoint)\n")
+    print(io, "  Dimension: $(indexer.config.dim)\n")
+    print(io, "  Index path: $(indexer.config.index_path)\n")
+    print(io, "  Document maxlen: $(indexer.config.doc_maxlen)\n")
+    print(io, "  Compression bits: $(indexer.config.nbits)\n")
+end
