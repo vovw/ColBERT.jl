@@ -63,7 +63,7 @@ Base.@kwdef struct ColBERTConfig
     query_token::String = "[Q]"
     doc_token::String = "[D]"
 
-    # resource settings 
+    # resource settings
     checkpoint::String = "colbert-ir/colbertv2.0"
     collection::Union{String, Vector{String}} = ""
 
@@ -87,4 +87,32 @@ Base.@kwdef struct ColBERTConfig
     # search settings
     nprobe::Int = 2
     ncandidates::Int = 8192
+end
+
+function Base.show(io::IO, config::ColBERTConfig)
+    print(io, "ColBERTConfig:\n")
+    print(io, "  Model:\n")
+    print(io, "    checkpoint: $(config.checkpoint)\n")
+    print(io, "    dim: $(config.dim)\n")
+    print(io, "  Documents:\n")
+    print(io,
+        "    collection: $(config.collection isa String ? config.collection : "$(length(config.collection)) documents")\n")
+    print(io, "    max length: $(config.doc_maxlen)\n")
+    print(io, "    mask punctuation: $(config.mask_punctuation)\n")
+    print(io, "  Queries:\n")
+    print(io, "    max length: $(config.query_maxlen)\n")
+    print(io, "    attend to mask: $(config.attend_to_mask_tokens)\n")
+    print(io, "  Indexing:\n")
+    print(io, "    path: $(config.index_path)\n")
+    print(io, "    batch size: $(config.index_bsize)\n")
+    print(io, "    chunk size: $(config.chunksize)\n")
+    print(io, "    compression bits: $(config.nbits)\n")
+    print(io, "    kmeans iterations: $(config.kmeans_niters)\n")
+    print(io, "  Search:\n")
+    print(io, "    nprobe: $(config.nprobe)\n")
+    print(io, "    ncandidates: $(config.ncandidates)\n")
+    print(io, "  Hardware:\n")
+    print(io, "    GPU: $(config.use_gpu)\n")
+    print(io, "    rank: $(config.rank)\n")
+    print(io, "    nranks: $(config.nranks)\n")
 end
