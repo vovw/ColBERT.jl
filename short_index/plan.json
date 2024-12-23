@@ -1,0 +1,16 @@
+{
+    "num_chunks": 5,
+    "avg_doclen_est": 172.0,
+    "num_documents": 10,
+    "num_embeddings_est": 1720.0,
+    "num_embeddings": 1664,
+    "embeddings_offsets": [
+        1,
+        396,
+        750,
+        1051,
+        1345
+    ],
+    "num_partitions": 512,
+    "chunksize": 2
+}
