@@ -146,12 +146,13 @@ function index(indexer::Indexer)
     _check_all_files_are_saved(indexer.config.index_path)
 end
 
-function Base.show(io::IO, indexer::Indexer)
+function Base.show(io::IO, ::MIME"text/plain", indexer::Indexer)
     print(io, "ColBERT Indexer:\n")
-    print(io, "  Collection size: $(length(indexer.collection)) documents\n")
-    print(io, "  Model: $(indexer.config.checkpoint)\n")
-    print(io, "  Dimension: $(indexer.config.dim)\n")
-    print(io, "  Index path: $(indexer.config.index_path)\n")
-    print(io, "  Document maxlen: $(indexer.config.doc_maxlen)\n")
-    print(io, "  Compression bits: $(indexer.config.nbits)\n")
+    print(io, "  collection size: $(length(indexer.collection)) documents\n")
+    print(io, "  checkpoint: $(indexer.config.checkpoint)\n")
+    collection_path = indexer.config.collection
+    if collection_path isa String && !isempty(collection_path)
+        print(io, "  collection path: $(collection_path)\n")
+    end
+    print(io, "  index path: $(indexer.config.index_path)\n")
 end

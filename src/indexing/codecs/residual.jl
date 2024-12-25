@@ -782,13 +782,3 @@ function decompress(
     end
     embeddings
 end
-
-function Base.show(io::IO, codec::Dict{String, Any})
-    print(io, "ColBERT Residual Codec:\n")
-    print(io, "  Centroids: $(size(codec["centroids"],2))\n")
-    print(io, "  Average residual: $(round(codec["avg_residual"], digits=4))\n")
-    print(
-        io, "  Bucket cutoffs: $(round.(codec["bucket_cutoffs"], digits=4))\n")
-    print(
-        io, "  Bucket weights: $(round.(codec["bucket_weights"], digits=4))\n")
-end
